@@ -13,12 +13,12 @@ let result = 0;
 for (let i = 0; i < n; i++) {
     // console.log(inputLine[i]);
     // console.log(inputLine[i + 1]);
-    let calc =
-        inputLine[i] *
-        (inputLine[i + 1] || inputLine[i + 1] === 0 ? inputLine[i + 1] : 1);
-    // console.log(calc);
+    for (let j = i + 1; j < n; j++) {
+        let calc = inputLine[i] * inputLine[j];
+        // console.log(calc);
 
-    result += calc;
+        result += calc;
+    }
 }
 
 console.log(result);
