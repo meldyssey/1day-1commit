@@ -24,7 +24,9 @@ for (let i = 0; i < resultArr.length - 1; i++) {
             }
         }
     }
+
     resultArr = resultArr.filter((v) => !toRemove.has(v));
+    console.log(toRemove);
 }
 console.log(resultArr);
 
