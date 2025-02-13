@@ -12,3 +12,5 @@ const inputLine = input.map((v) => v.trim().split(" "));
 
 console.log(numLine);
 console.log(inputLine);
+
+const result = new Set();
