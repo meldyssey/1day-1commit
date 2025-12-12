@@ -19,6 +19,6 @@ function solution(input) {
     return a.localeCompare(b);
   });
 
-  console.log(inputArr);
+  console.log(inputArr.join("\n"));
 }
 solution(input);
