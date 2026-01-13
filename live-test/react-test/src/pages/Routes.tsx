@@ -1,6 +1,7 @@
 import Counter from "./Couter";
 import Home from "./Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ToggleSwitch from "./ToggleSwitch";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/counter",
     element: <Counter />,
+  },
+  {
+    path: "/toggle-switch",
+    element: <ToggleSwitch />,
   },
 ]);
 
