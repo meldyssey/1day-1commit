@@ -8,18 +8,21 @@ function memoize(fn) {
       return cache.get(key);
     }
 
-    const result = fn.apply(this, args);
+    // apply를 사용하지 않으면 [3, 4]를 하나의 인수로 전달 (잘못됨)
+    // apply를 사용하면 3, 4를 각각 인수로 전달 (올바름)
+    // const result = fn.apply(this, args);
+    // 아래는 더 현대적인 방법
+    const result = fn.apply(...args);
     cache.set(key, result);
 
     return result;
   }
 
-  // Object.defineProperty를 사용하여 memoizedFunction의 name 속성을 memoized_${fn.name}과 같이 보다 설명적인 값으로 설정합니다(여기서 fn.name은 원래 함수의 이름입니다). configurable 속성을 설정하려면 필요한 경우 속성을 추가로 수정하거나 삭제할 수 있습니다.
-
   memoizedFunction.clear = function clear() {
     cache.clear();
   };
 
+  // Object.defineProperty를 사용하여 memoizedFunction의 name 속성을 memoized_${fn.name}과 같이 보다 설명적인 값으로 설정합니다(여기서 fn.name은 원래 함수의 이름입니다). configurable 속성을 설정하려면 필요한 경우 속성을 추가로 수정하거나 삭제할 수 있습니다.
   Object.defineProperty(memoizedFunction, "name", {
     value: `memoized_${fn.name}`,
     configurable: true,
