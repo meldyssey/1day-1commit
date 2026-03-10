@@ -35,3 +35,37 @@ B. test 함수 호출 완료
 타이머 완료 - resolve 호출!
 3. delay 완료 후
 */
+
+console.log("------------------------------");
+
+async function test2() {
+  console.log("A");
+
+  // 이 줄이 실행되는 순간:
+  const promise = new Promise((resolve) => {
+    console.log("Promise 생성자 실행!"); // 즉시 실행
+    setTimeout(() => {
+      console.log("1초 후 타이머 완료!");
+      resolve("완료");
+    }, 1000); // 백그라운드에서 타이머 시작
+    console.log("setTimeout 등록 완료");
+  });
+
+  console.log("B"); // 즉시 실행
+  console.log("Promise 상태:", promise); // Promise {<pending>}
+
+  const result = await promise; // 여기서 1초 대기
+  console.log("C", result);
+}
+
+test2();
+
+// 출력 순서:
+// A
+// Promise 생성자 실행!
+// setTimeout 등록 완료
+// B
+// Promise 상태: Promise {<pending>}
+// (1초 후)
+// 1초 후 타이머 완료!
+// C 완료
